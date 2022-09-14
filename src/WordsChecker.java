@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import static java.util.Arrays.asList;
@@ -32,5 +33,18 @@ public class WordsChecker {
      */
     private static String removePunctuations(String text) {
         return text.replaceAll("\\p{Punct}", "");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof WordsChecker)) return false;
+        WordsChecker that = (WordsChecker) o;
+        return Objects.equals(text, that.text);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(text);
     }
 }
