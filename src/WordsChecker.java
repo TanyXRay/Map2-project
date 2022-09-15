@@ -4,10 +4,11 @@ import java.util.Set;
 import static java.util.Arrays.asList;
 
 public class WordsChecker {
-    private String text;
+    private Set<String> set;
 
     public WordsChecker(String text) {
-        this.text = removePunctuations(text.toLowerCase());
+        text = removePunctuations(text);
+        this.set = new HashSet<>(asList(text.split(" ")));
     }
 
     /**
@@ -17,7 +18,6 @@ public class WordsChecker {
      * @return true - если переданное слово есть в тексте,false - если его нет.
      */
     public boolean hasWord(String word) {
-        Set<String> set = new HashSet<>(asList(text.split(" ")));
         if (set.contains(word.toLowerCase())) {
             System.out.println("The word: " + "\"" + word + "\"" + " is in this text!");
             return true;
@@ -31,6 +31,6 @@ public class WordsChecker {
      * @return текст без знаков препинания.
      */
     private static String removePunctuations(String text) {
-        return text.replaceAll("\\p{Punct}", "");
+        return text.replaceAll("\\p{Punct}", "").toLowerCase();
     }
 }
